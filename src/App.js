@@ -2,6 +2,7 @@ import "./App.css";
 import ImportaDNA from "./ImportaDNA";
 import IdentificaSigmano from "./IdentificaSigmano";
 import { useState } from "react";
+import { TbDna2, TbDna2Off } from 'react-icons/tb';
 
 function App() {
   const [dnaSeq, setDNASeq] = useState("");
@@ -71,6 +72,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1><TbDna2/></h1>
       <h1>Identificador de Sigmanos</h1>
 
       <form onSubmit={onSubmit}>
