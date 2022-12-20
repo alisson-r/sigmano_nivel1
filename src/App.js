@@ -2,7 +2,7 @@ import "./App.css";
 import ImportaDNA from "./ImportaDNA";
 import IdentificaSigmano from "./IdentificaSigmano";
 import { useState } from "react";
-import { TbDna2, TbDna2Off } from 'react-icons/tb';
+import { TbDna2, TbDna2Off } from "react-icons/tb";
 
 function App() {
   const [dnaSeq, setDNASeq] = useState("");
@@ -20,30 +20,30 @@ function App() {
 
     setResultado(null);
 
-    inputDNA = dnaSeq;
+    inputDNA = dnaSeq.toUpperCase();
 
     if (inputDNA) {
       var tamanho = 0;
 
       inputDNA = inputDNA.split(" ");
 
+      tamanho = inputDNA[0].length;
+
       try {
-        tamanho = inputDNA[0].length;
-
         inputDNA.map((linha) => {
-          linha = linha.split("");
-
           //Verifica se os arrays tem tamanhos diferentes
           if (linha.length != tamanho) {
             flagVerifica = false;
           } else {
+            linha = linha.split("");
+
             //Verifica as letras
             linha.map((coluna) => {
               if (
-                coluna != "A" &&
-                coluna != "T" &&
-                coluna != "C" &&
-                coluna != "G"
+                coluna !== "A" &&
+                coluna !== "T" &&
+                coluna !== "C" &&
+                coluna !== "G"
               ) {
                 flagVerifica = false;
               }
@@ -51,7 +51,7 @@ function App() {
           }
         });
 
-        if (flagVerifica) {
+        if (flagVerifica === true) {
           importaDNA = ImportaDNA(inputDNA);
 
           if (IdentificaSigmano(importaDNA[0], importaDNA[1], importaDNA[2])) {
@@ -72,7 +72,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1><TbDna2/></h1>
+      <h1>
+        <TbDna2 />
+      </h1>
       <h1>Identificador de Sigmanos</h1>
 
       <form onSubmit={onSubmit}>
